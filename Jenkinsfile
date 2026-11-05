@@ -20,11 +20,15 @@ pipeline {
      }
     }
      
-     stage('Docker Image Build') {     
-        steps {
-              docker build -t tanmay477/myjava-image:${BUILD_NUMBER} .
-               }
-             }
+   stage('Docker Image Build') {
+    steps {
+        sh '''
+            set -e
+            docker build -t tanmay477/myjava-image:${BUILD_NUMBER} .
+            docker tag tanmay477/myjava-image:${BUILD_NUMBER} tanmay477/myjava-image:latest
+        '''
+    }
+}
         stage('Docker image push') {
            steps {
                  withCredentials([usernamePassword(credentialsId: '82377f3d-eaad-4d26-8e68-bdb06c13e4d8', passwordVariable: 'Password', usernameVariable: 'Username')]) {
