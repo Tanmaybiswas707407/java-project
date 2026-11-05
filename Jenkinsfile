@@ -22,7 +22,7 @@ pipeline {
      
      stage('Docker Image Build') {     
         steps {
-              sh ' docker build -t myjava-image . '
+              docker build -t tanmay477/myjava-image:${BUILD_NUMBER} .
                }
              }
         stage('Docker image push') {
