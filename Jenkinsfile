@@ -22,7 +22,7 @@ pipeline {
      
      stage('Docker Image Build') {     
         steps {
-              sh 'sudo docker build -t myjava-image . '
+              sh ' docker build -t myjava-image . '
                }
              }
         stage('Docker image push') {
